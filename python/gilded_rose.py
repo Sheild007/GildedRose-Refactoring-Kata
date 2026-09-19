@@ -33,7 +33,7 @@ class GildedRose(object):
                             if item.name != "Sulfuras, Hand of Ragnaros":
                                 item.quality = item.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        item.quality = MIN_QUALITY
                 else:
                     if item.quality < MAX_QUALITY:
                         item.quality = item.quality + 1
