@@ -17,6 +17,8 @@ class GildedRose(object):
                 self._update_aged_brie(item)
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                 self._update_backstage_pass(item)
+            elif "Conjured" in item.name:
+                self._update_conjured(item)
             else:
                 self._update_normal(item)
 
@@ -46,6 +48,12 @@ class GildedRose(object):
         else:
             item.quality = min(MAX_QUALITY, item.quality + 1)
 
+    def _update_conjured(self, item):
+        # Degrades 2x as fast as normal items
+        if item.sell_in < 0:
+            item.quality = max(MIN_QUALITY, item.quality - 4)
+        else:
+            item.quality = max(MIN_QUALITY, item.quality - 2)
 
 class Item:
     def __init__(self, name, sell_in, quality):
